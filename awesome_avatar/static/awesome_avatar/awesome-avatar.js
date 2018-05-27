@@ -46,7 +46,7 @@ bind_preview = function(selector, config, e) {
     $(selector + '-select-area').empty();
     $(selector + '-select-area').append('<img />');
 //    $(selector + '-select-area img').show();
-    $(selector + '-select-area img').attr('src', image_data).load(function(){
+    $(selector + '-select-area img').attr('src', image_data).on('load', function(){
         $(this).unbind('load');
 
         var img_width = $(this).width();
