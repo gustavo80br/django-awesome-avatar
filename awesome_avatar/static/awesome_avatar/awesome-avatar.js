@@ -45,6 +45,7 @@ bind_preview = function(selector, config, e) {
 
     $(selector + '-select-area').empty();
     $(selector + '-select-area').append('<img />');
+    $(selector + '-select-area img').css('visibility','hidden');
 //    $(selector + '-select-area img').show();
     $(selector + '-select-area img').attr('src', image_data).on('load', function(){
         $(this).unbind('load');
@@ -68,6 +69,8 @@ bind_preview = function(selector, config, e) {
             $(selector + '-ratio').val(1);
         }
 
+        $(selector + '-select-area img').css('visibility','visible');
+        
         img_width = $(this).width();
         img_height = $(this).height();
 
