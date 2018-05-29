@@ -5,11 +5,7 @@ from django.db import models
 from awesome_avatar import forms
 from awesome_avatar.validators import validate_avatar_file_extension
 
-try:
-    from io import StringIO
-except ImportError:
-    try:
-        from StringIO import StringIO
+from io import BytesIO
         
 try:
     from PIL import Image
@@ -51,7 +47,7 @@ class AvatarField(models.ImageField):
             image = image.crop(data['box'])
             image = image.resize((self.width, self.height), Image.ANTIALIAS)
 
-            content = StringIO()
+            content = BytesIO()
             image.save(content, config.save_format, quality=config.save_quality)
 
             file_name = u'{}.{}'.format(os.path.splitext(file_.name)[0], config.save_format)
