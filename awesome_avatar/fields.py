@@ -34,7 +34,7 @@ class AvatarField(models.ImageField):
         self.height = kwargs.pop('height', config.height)
 
         kwargs['upload_to'] = kwargs.get('upload_to', config.upload_to)
-
+        self.default_validators = [validate_avatar_file_extension]
         super(AvatarField, self).__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):
