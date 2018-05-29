@@ -3,6 +3,7 @@ from awesome_avatar.settings import config
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from awesome_avatar import forms
+from awesome_avatar.validators import validate_avatar_file_extension
 
 try:
     from cStringIO import StringIO
@@ -25,6 +26,8 @@ except ImportError:
 
 
 class AvatarField(models.ImageField):
+    default_validators = [validate_avatar_file_extension]
+    
     def __init__(self, *args, **kwargs):
 
         self.width = kwargs.pop('width', config.width)
