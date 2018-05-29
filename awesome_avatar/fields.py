@@ -49,7 +49,7 @@ class AvatarField(models.ImageField):
         file_ = data['file']
         if file_:
 
-            image = Image.open(StringIO(file_.read()))
+            image = Image.open(file_)
             image = image.crop(data['box'])
             image = image.resize((self.width, self.height), Image.ANTIALIAS)
 
