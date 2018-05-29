@@ -2,9 +2,11 @@ from django import forms
 
 from awesome_avatar.settings import config
 from awesome_avatar.widgets import AvatarWidget
+from awesome_avatar.validators import validate_avatar_file_extension 
 
 
 class AvatarField(forms.ImageField):
+    default_validators = [validate_avatar_file_extension]
     widget = AvatarWidget
 
     def __init__(self, **defaults):
