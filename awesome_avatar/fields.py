@@ -6,13 +6,11 @@ from awesome_avatar import forms
 from awesome_avatar.validators import validate_avatar_file_extension
 
 try:
-    from cStringIO import StringIO
+    from io import StringIO
 except ImportError:
     try:
         from StringIO import StringIO
-    except ImportError:
-        from io import StringIO
-
+        
 try:
     from PIL import Image
 except ImportError:
