@@ -43,10 +43,18 @@ class AvatarWidget(FileInput):
         context['name'] = name
         context['config'] = config
     
-        if value._file:
-            context['avatar_url'] = value.url
-        else:
+        
+        if hasattr(value, 'get'):
+            value = value.get('file', None)
+
+        try:
+            if hasattr(value, 'url'):
+                context['avatar_url'] = value.url
+            else:
+                context['avatar_url'] = '/static/awesome_avatar/default.png'
+        except:
             context['avatar_url'] = '/static/awesome_avatar/default.png'
+
         
         context['id'] = attrs.get('id', 'id_' + name)
         # todo fix HACK
