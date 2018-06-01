@@ -6,7 +6,9 @@ def validate_avatar_file_extension(value):
 
     try:
         value.get('box', None)
-        validation = validator(value['file'])
+        value = value['file']
+        if value:
+            validation = validator(value['file'])
     except:
         validation = validator(value)
 
