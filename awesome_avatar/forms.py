@@ -15,7 +15,11 @@ class AvatarField(forms.ImageField):
         super(AvatarField, self).__init__(**defaults)
 
     def to_python(self, data):
-        super(AvatarField, self).to_python(data['file'])
+        try:
+            fp = data.get('file', None)
+        except:
+            fp = data           
+        super(AvatarField, self).to_python(data)
         return data
 
     def widget_attrs(self, widget):
